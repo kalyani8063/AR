@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Historian - Sanskriti Darpan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --dark-charcoal: #2c3e50;
+        --vibrant-green: #27ae60;
+        --white: #ffffff;
+        --light-grey-bg: #f8f9fa;
+        --text-color: #34495e;
+        --footer-text: #bdc3c7;
+        --border-color: #e0e0e0;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--light-grey-bg);
+        margin: 0;
+        padding: 0;
+        color: var(--text-color);
+        line-height: 1.7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header & Footer (Copied for consistency) */
+      .top-nav {
+        background-color: var(--white);
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ecf0f1;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      .top-nav .container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 20px;
+      }
+      .nav-left { display: flex; align-items: center; gap: 15px; }
+      .emblem { height: 40px; }
+      .logo-text { font-weight: 700; font-size: 1.4em; color: var(--dark-charcoal); }
+      .nav-right { display: flex; align-items: center; gap: 30px; }
+      .nav-right a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.3s ease; }
+      .nav-right a:hover { color: var(--vibrant-green); }
+      .search-icon { width: 20px; height: 20px; cursor: pointer; }
+
+      .footer { background-color: var(--dark-charcoal); color: var(--footer-text); padding: 40px 0; margin-top: 60px; }
+      .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+      .footer-column h4 { color: var(--white); margin-bottom: 15px; font-weight: 700; }
+      .footer-column p, .footer-column a { color: var(--footer-text); text-decoration: none; margin-bottom: 10px; display: block; transition: color 0.3s ease; }
+      .footer-column a:hover { color: var(--white); }
+      .social-icons { display: flex; gap: 15px; }
+      .social-icons a { display: inline-block; }
+      .social-icons img { width: 24px; height: 24px; opacity: 0.8; transition: opacity 0.3s ease; }
+      .social-icons img:hover { opacity: 1; }
+      .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #34495e; font-size: 0.9em; }
+
+      /* Main Content */
+      .chat-container {
+        max-width: 800px;
+        margin: 40px auto 0;
+        padding: 40px;
+        background-color: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      }
+
+      .chat-container h1 {
+        font-size: 2.5em;
+        color: var(--dark-charcoal);
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      .chat-container p {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 100px;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        resize: vertical;
+        transition: border-color 0.3s ease;
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: var(--vibrant-green);
+        box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
+      }
+
+      button {
+        background-color: var(--vibrant-green);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      button:hover {
+        background-color: #2ecc71;
+        transform: translateY(-2px);
+      }
+
+      button:disabled {
+        background-color: #95a5a6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      #response {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: var(--light-grey-bg);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        white-space: pre-wrap;
+        line-height: 1.6;
+        font-size: 1rem;
+        color: var(--text-color);
+        min-height: 50px;
+      }
+    </style>
+</head>
+<body>
+    <header class="top-nav">
+      <div class="container">
+        <div class="nav-left"></div>
+        <span class="logo-text">Sanskriti Darpan</span>
+        <nav class="nav-right">
+          <a href="index.html">Home</a>
+          <a href="about.html">About the Initiative</a>
+          <a href="#">Sites</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <div class="chat-container">
+            <h1>AI Historian 🏛️</h1>
+            <p>Ask a question about Odisha's heritage sites, and our AI assistant will provide an answer based on its knowledge base.</p>
+
+            <textarea id="questionInput" placeholder="e.g., Which site is known as the 'Diamond Triangle'?"></textarea>
+            <button id="askButton">Ask AI</button>
+
+            <h3>Response:</h3>
+            <pre id="response">The AI's answer will appear here...</pre>
+        </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-column">
+          <h4>Sanskriti Darpan</h4>
+          <p>An initiative by the Department of Tourism, Government of Odisha, to bring our state's rich heritage to a global audience through technology.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <a href="about.html">About the Initiative</a>
+          <a href="#">All Heritage Sites</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#"><img src="https://simpleicons.org/icons/x.svg" alt="X (Twitter)"></a>
+            <a href="#"><img src="https://simpleicons.org/icons/facebook.svg" alt="Facebook"></a>
+            <a href="#"><img src="https://simpleicons.org/icons/instagram.svg" alt="Instagram"></a>
+            <a href="#"><img src="https://simpleicons.org/icons/youtube.svg" alt="YouTube"></a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2024 Government of Odisha. All Rights Reserved.
+      </div>
+    </footer>
+
+    <script>
+        // --- 1. SETUP ---
+        // ⚠️ IMPORTANT: Replace with your actual API key.
+        const API_KEY = "AIzaSyAbefwXJH3EP8Xxvpt014xM2kuCHgdP2pM"; // Replace with your actual API key
+        const MODEL_NAME = "gemini-1.5-flash"; // A fast and capable model
+
+        // The context data containing information about the heritage sites.
+        const CONTEXT_DATA = `
+        1. Site: Ancient Jain Sculptures – Nandapur Region, Koraput
+            - Represents the rich Jain heritage of the historic Nandapur Kingdom.
+            - Was a significant Jain center, particularly for gemstone traders, as early as the 4th century.
+            - Features sculptures of Tirthankaras like Rishabhanatha, Parshvanatha, and Mahavira.
+            - Serves as crucial evidence of the flourishing Jain culture and art in southern Odisha.
+
+        2. Site: Buddhist Relics - Bhandaripokhari, Bhadrak District, Odisha
+            - Discoveries suggest the area was a significant cultural and religious hub from the 6th to 9th centuries CE.
+            - Relics include idols of Buddha in the 'Bhumisparsha Mudra' and other deities.
+            - Indicates a confluence of both Buddhist and Shaivite traditions in the same region.
+            - Provides valuable insight into the religious and artistic practices of the era.
+
+        3. Temples of Ekamra Kshetra - Old Town, Bhubaneswar
+            - Represents a continuous architectural heritage spanning over 2,000 years in the "Temple City."
+            - Considered the finest example of the Kalinga style of temple architecture.
+            - Home to hundreds of temples, led by the prominent Lingaraj Temple.
+            - Showcases the complete evolution of Odishan temple design and the city's role as a major religious center.
+
+        4. Site: Keonjhar Archaeological Relics 
+            - Holds evidence of human habitation dating back to the Mesolithic period (hunter-gatherer communities).
+            - Numerous sites contain microlithic artifacts and early implements.
+            - The region is also rich in later Jaina antiquities from the medieval period.
+            - Crucial for understanding the long-term cultural and historical evolution of this part of Odisha.
+
+
+        5. Buddhist Sites - Lalitgiri, Ratnagiri, Udayagiri (Jajpur)
+            - Collectively known as the "Diamond Triangle," a major center for Buddhism in ancient India.
+            - Flourished for over a millennium, from the 1st century BCE to the 12th century CE.
+            - Was an important center for advanced learning, particularly for Mahayana and Vajrayana Buddhism.
+            - Excavations revealed extensive monastic complexes, stupas, and sacred relic caskets believed to contain relics of the Buddha.
+
+        `;
+
+        // --- 2. GET ELEMENTS ---
+        const askButton = document.getElementById('askButton');
+        const questionInput = document.getElementById('questionInput');
+        const responseEl = document.getElementById('response');
+
+        // --- 3. API CALL FUNCTION ---
+        async function askAI() {
+            // Disable button and show loading state
+            askButton.disabled = true;
+            responseEl.textContent = 'Thinking...';
+
+            const question = questionInput.value;
+
+            const prompt = `
+            You are an expert assistant on Indian heritage sites.
+            Based ONLY on the context provided below, answer the user's question accurately and concisely.
+            If the information is not present in the context, clearly state that the answer is not available in the provided data.
+
+            CONTEXT:
+            ---
+            ${CONTEXT_DATA}
+            ---
+
+            QUESTION: ${question}
+            `;
+
+            const api_url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+
+            try {
+                const response = await fetch(api_url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const aiText = data.candidates[0].content.parts[0].text;
+                responseEl.textContent = aiText.trim();
+
+            } catch (error) {
+                responseEl.textContent = `Error: ${error.message}`;
+                console.error(error);
+            } finally {
+                // Re-enable the button
+                askButton.disabled = false;
+            }
+        }
+
+        // --- 4. EVENT LISTENER ---
+        askButton.addEventListener('click', askAI);
+
+    </script>
+</body>
+</html>
