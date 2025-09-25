@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>About the Initiative - Sanskriti Darpan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --dark-charcoal: #2c3e50;
+        --vibrant-green: #27ae60;
+        --white: #ffffff;
+        --light-grey-bg: #f8f9fa;
+        --text-color: #34495e;
+        --footer-text: #bdc3c7;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--light-grey-bg);
+        margin: 0;
+        padding: 0;
+        color: var(--text-color);
+        line-height: 1.7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header & Footer (Copied for consistency) */
+      .top-nav {
+        background-color: var(--white);
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ecf0f1;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      .top-nav .container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 20px;
+      }
+      .nav-left { display: flex; align-items: center; gap: 15px; }
+      .emblem { height: 40px; }
+      .logo-text { font-weight: 700; font-size: 1.4em; color: var(--dark-charcoal); }
+      .nav-right { display: flex; align-items: center; gap: 30px; }
+      .nav-right a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.3s ease; }
+      .nav-right a:hover { color: var(--vibrant-green); }
+      .search-icon { width: 20px; height: 20px; cursor: pointer; }
+
+      .footer { background-color: var(--dark-charcoal); color: var(--footer-text); padding: 40px 0; margin-top: 60px; }
+      .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+      .footer-column h4 { color: var(--white); margin-bottom: 15px; font-weight: 700; }
+      .footer-column p, .footer-column a { color: var(--footer-text); text-decoration: none; margin-bottom: 10px; display: block; transition: color 0.3s ease; }
+      .footer-column a:hover { color: var(--white); }
+      .social-icons { display: flex; gap: 15px; }
+      .social-icons a { display: inline-block; }
+      .social-icons img { width: 24px; height: 24px; opacity: 0.8; transition: opacity 0.3s ease; }
+      .social-icons img:hover { opacity: 1; }
+      .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #34495e; font-size: 0.9em; }
+
+      /* Main Content */
+      .about-content {
+        padding: 60px 20px;
+        max-width: 900px;
+        margin: 40px auto 0;
+        background-color: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      }
+      .about-content h1 {
+        font-size: 2.8em;
+        color: var(--dark-charcoal);
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 3px solid var(--vibrant-green);
+        padding-bottom: 15px;
+      }
+      .about-content h2 {
+        font-size: 1.8em;
+        color: var(--dark-charcoal);
+        margin-top: 40px;
+        margin-bottom: 15px;
+      }
+      .about-content p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+      }
+      .about-content ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        font-size: 1.1em;
+      }
+      .about-content li {
+        margin-bottom: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header class="top-nav">
+      <div class="container">
+        <div class="nav-left"></div>
+        <span class="logo-text">Sanskriti Darpan</span>
+        <nav class="nav-right">
+          <a href="index.html">Home</a>
+          <a href="about.html">About the Initiative</a>
+          <a href="#">Sites</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="about-content">
+        <h1>About the Sanskriti Darpan Initiative</h1>
+        <p><strong>Sanskriti Darpan</strong> is a landmark digital initiative by the Government of Odisha, designed to preserve, celebrate, and share our state's timeless cultural treasures with the world. The name, which translates to "Mirror of Culture," reflects our mission to create a vivid, accessible, and engaging reflection of Odisha's rich history and heritage.</p>
+
+        <h2>Our Vision</h2>
+        <p>Our vision is to bridge the gap between past and future. We aim to leverage cutting-edge technology to make heritage education immersive, interactive, and inspiring for a global audience. By digitizing our most precious monuments and artifacts, we ensure their stories are not lost to time but are instead retold in new and powerful ways for generations to come.</p>
+
+        <h2>Technology at the Forefront</h2>
+        <p>At the heart of Sanskriti Darpan is the use of Augmented Reality (AR) and Artificial Intelligence (AI):</p>
+        <ul>
+            <li><strong>Augmented Reality (AR):</strong> Our platform allows users to bring detailed 3D models of ancient temples, sculptures, and relics into their own environment. This immersive experience provides a unique perspective on the scale, architecture, and artistry of Odisha's heritage sites.</li>
+            <li><strong>AI Historian:</strong> To answer your deepest questions, we have developed an AI-powered chatbot trained on a vast repository of historical and archaeological data. This virtual guide provides instant, accurate information, making learning about our history more dynamic and conversational.</li>
+            <li><strong>Interactive Quizzes:</strong> Test your knowledge and engage with the content through fun, educational quizzes designed for each heritage site.</li>
+        </ul>
+
+        <h2>A Commitment to Preservation</h2>
+        <p>Sanskriti Darpan is more than just a technological showcase; it is a vital archival project. The high-fidelity 3D scans and comprehensive data collection serve as a permanent digital record, aiding researchers, historians, and conservationists in their work to protect these invaluable sites.</p>
+        <p>We invite you to explore, learn, and be inspired. Welcome to the future of heritage.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-column">
+          <h4>Sanskriti Darpan</h4>
+          <p>An initiative by the Department of Tourism, Government of Odisha, to bring our state's rich heritage to a global audience through technology.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <a href="about.html">About the Initiative</a>
+          <a href="#">All Heritage Sites</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#"><img src="https://simpleicons.org/icons/x.svg" alt="X (Twitter)"></a>
+            <a href="#"><img src="https://simpleicons.org/icons/facebook.svg" alt="Facebook"></a>
+            <a href="#"><img src="https://simpleicons.org/icons/instagram.svg" alt="Instagram"></a>
+            <a href="#"><img src="https://simpleicons.org/icons/youtube.svg" alt="YouTube"></a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2024 Government of Odisha. All Rights Reserved.
+      </div>
+    </footer>
+  </body>
+</html>
