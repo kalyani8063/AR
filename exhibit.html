@@ -213,184 +213,176 @@
     </footer>
 
     <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. DATA SOURCE (Complete Version) ---
-    const siteData = {
-      'jain-sculptures': {
-        title: 'Ancient Jain Sculptures, Nandapur Region',
-        aboutTitle: 'About The Jain Sculptures',
-        description: [
-          "The Nandapur region in Koraput district is a treasure trove of ancient Jain heritage, offering a glimpse into a flourishing culture that dates back to as early as the 4th century. This area was a significant center for Jainism, particularly for gemstone traders who followed the faith.",
-          "The discovery of numerous sculptures of Tirthankaras like Rishabhanatha, Parshvanatha, and Mahavira provides crucial evidence of the rich artistic and religious traditions that once thrived in southern Odisha. These sculptures, carved with intricate detail, are not just religious icons but also masterpieces of regional art."
-        ],
-        keyFacts: {
-          "Period": "4th - 12th Century AD",
-          "Location": "Nandapur Region, Koraput District",
-          "Faith": "Jainism",
-          "Key Figures": "Tirthankaras Rishabhanatha, Parshvanatha, Mahavira",
-          "Significance": "Major center for Jain gemstone traders"
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- 1. DATA SOURCE (Paths updated to 'images/' folder) ---
+      const siteData = {
+        'jain-sculptures': {
+          title: 'Ancient Jain Sculptures, Nandapur Region',
+          aboutTitle: 'About The Jain Sculptures',
+          description: [
+            "The Nandapur region in Koraput district is a treasure trove of ancient Jain heritage, offering a glimpse into a flourishing culture that dates back to as early as the 4th century. This area was a significant center for Jainism, particularly for gemstone traders who followed the faith.",
+            "The discovery of numerous sculptures of Tirthankaras like Rishabhanatha, Parshvanatha, and Mahavira provides crucial evidence of the rich artistic and religious traditions that once thrived in southern Odisha. These sculptures, carved with intricate detail, are not just religious icons but also masterpieces of regional art."
+          ],
+          keyFacts: {
+            "Period": "4th - 12th Century AD",
+            "Location": "Nandapur Region, Koraput District",
+            "Faith": "Jainism",
+            "Key Figures": "Tirthankaras Rishabhanatha, Parshvanatha, Mahavira",
+            "Significance": "Major center for Jain gemstone traders"
+          },
+          images: [
+            "images/Ancient Jain Sculptures, Nandapur Region-hero.png", // Path updated
+          ],
+          cardImage: "images/ancient-jain-sculptures–nandapur-region-koraput.png", // Path updated
+          cardTitle: "Ancient Jain Sculptures",
+          cardSubtitle: "Nandapur Region, Koraput",
+          arPage: "Site-1.html",
+          quizId: "nandapur-jain-sculptures"
         },
-        images: [
-          "Images-Frontend/Keonjhar Archaeological Relics- hero.png",
-          "https://upload.wikimedia.org/wikipedia/commons/4/4f/Subai_Jain_Temple_Koraput.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Sitabhinji_group_of_rock_shelters_and_the_rock_with_the_tempera_painting_of_Ravana_Chhaya_04.jpg/1280px-Sitabhinji_group_of_rock_shelters_and_the_rock_with_the_tempera_painting_of_Ravana_Chhaya_04.jpg"
-        ],
-        cardImage: "Images-frontend/Ancient Jain Sculptures – Nandapur Region, Koraput.png",
-        cardTitle: "Ancient Jain Sculptures",
-        cardSubtitle: "Nandapur Region, Koraput",
-        arPage: "Site-1.html",
-        quizId: "nandapur-jain-sculptures"
-      },
-      'buddhist-relics': {
-        title: 'Buddhist Relics, Bhandaripokhari',
-        aboutTitle: 'About The Buddhist Relics',
-        description: [
-          "Discoveries in Bhandaripokhari, Bhadrak district, suggest the area was a significant cultural and religious hub from the 6th to 9th centuries CE. The relics unearthed here provide a window into a vibrant past where multiple faiths coexisted.",
-          "Among the findings are idols of Buddha in the 'Bhumisparsha Mudra' and various other deities. This indicates a confluence of both Buddhist and Shaivite traditions in the same region, offering valuable insight into the religious and artistic practices of the era."
-        ],
-        keyFacts: {
-          "Period": "6th - 9th Century CE",
-          "Location": "Bhandaripokhari, Bhadrak District",
-          "Faith": "Buddhism & Shaivism",
-          "Key Relics": "Buddha in Bhumisparsha Mudra",
-          "Significance": "Evidence of religious confluence"
+        'buddhist-relics': {
+          title: 'Buddhist Relics, Bhandaripokhari',
+          aboutTitle: 'About The Buddhist Relics',
+          description: [
+            "Discoveries in Bhandaripokhari, Bhadrak district, suggest the area was a significant cultural and religious hub from the 6th to 9th centuries CE. The relics unearthed here provide a window into a vibrant past where multiple faiths coexisted.",
+            "Among the findings are idols of Buddha in the 'Bhumisparsha Mudra' and various other deities. This indicates a confluence of both Buddhist and Shaivite traditions in the same region, offering valuable insight into the religious and artistic practices of the era."
+          ],
+          keyFacts: {
+            "Period": "6th - 9th Century CE",
+            "Location": "Bhandaripokhari, Bhadrak District",
+            "Faith": "Buddhism & Shaivism",
+            "Key Relics": "Buddha in Bhumisparsha Mudra",
+            "Significance": "Evidence of religious confluence"
+          },
+          images: [
+            "images/buddhist-relics-bhandaripokhari.png", // Path updated
+          ],
+          cardImage: "images/buddhist-relics-bhandaripokhari-bhadrak.png", // Path updated
+          cardTitle: "Buddhist Relics",
+          cardSubtitle: "Bhandaripokhari, Bhadrak",
+          arPage: "Site-2.html",
+          quizId: "bhandaripokhari-relics"
         },
-        images: [
-          "Images-Frontend/Buddhist Relics, Bhandaripokhari- hero.png",
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_bIu_VjB_u_v_w_x_y_z_&s",
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_bIu_VjB_u_v_w_x_y_z_&s"
-        ],
-        cardImage: "Images-frontend/uddhist Relics - Bhandaripokhari, Bhadrak.png",
-        cardTitle: "Buddhist Relics",
-        cardSubtitle: "Bhandaripokhari, Bhadrak",
-        arPage: "Site-2.html",
-        quizId: "bhandaripokhari-relics"
-      },
-      'keonjhar-relics': {
-        title: 'Keonjhar Archaeological Relics',
-        aboutTitle: 'About The Keonjhar Relics',
-        description: [
-          "The Keonjhar region holds profound historical significance, with evidence of human habitation dating back to the Mesolithic period. This makes it a crucial site for understanding the long-term cultural evolution of Odisha, from hunter-gatherer communities to later organized societies.",
-          "Numerous sites contain microlithic artifacts and early implements used by prehistoric people. In addition to its ancient roots, the region is also rich in later Jaina antiquities from the medieval period, showcasing a continuous thread of cultural development over millennia."
-        ],
-        keyFacts: {
-          "Period": "Mesolithic to Medieval",
-          "Location": "Keonjhar District",
-          "Key Finds": "Microlithic artifacts, Jaina antiquities",
-          "Significance": "Long-term human habitation and cultural evolution"
+        'keonjhar-relics': {
+            title: 'Keonjhar Archaeological Relics',
+            aboutTitle: 'About The Keonjhar Relics',
+            description: [
+              "The Keonjhar region holds profound historical significance, with evidence of human habitation dating back to the Mesolithic period. This makes it a crucial site for understanding the long-term cultural evolution of Odisha, from hunter-gatherer communities to later organized societies.",
+              "Numerous sites contain microlithic artifacts and early implements used by prehistoric people. In addition to its ancient roots, the region is also rich in later Jaina antiquities from the medieval period, showcasing a continuous thread of cultural development over millennia."
+            ],
+            keyFacts: {
+              "Period": "Mesolithic to Medieval",
+              "Location": "Keonjhar District",
+              "Key Finds": "Microlithic artifacts, Jaina antiquities",
+              "Significance": "Long-term human habitation and cultural evolution"
+            },
+            images: [
+              "images/Keonjhar Archaeological Relics.png", // Path updated
+            ],
+            cardImage: "images/Keonjhar Archaeological Relics.png", // Path updated
+            cardTitle: "Keonjhar Archaeological Relics",
+            cardSubtitle: "Keonjhar",
+            arPage: "Site-3.html",
+            quizId: "keonjhar-relics"
         },
-        images: [
-          "Images-Frontend/Keonjhar Archaeological Relics- hero.png",
-          "Images-Frontend/keonjhar-relics.png",
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Sitabhinji_group_of_rock_shelters_and_the_rock_with_the_tempera_painting_of_Ravana_Chhaya_04.jpg/1280px-Sitabhinji_group_of_rock_shelters_and_the_rock_with_the_tempera_painting_of_Ravana_Chhaya_04.jpg"
-        ],
-        cardImage: "Images-frontend/Keonjhar Archaeological Relics.png",
-        cardTitle: "Keonjhar Archaeological Relics",
-        cardSubtitle: "Keonjhar",
-        arPage: "Site-3.html",
-        quizId: "keonjhar-relics"
-      },
-      'diamond-triangle': {
-        title: 'Buddhist Diamond Triangle',
-        aboutTitle: 'About The Diamond Triangle',
-        description: [
-          "The sites of Lalitgiri, Ratnagiri, and Udayagiri collectively form the 'Diamond Triangle,' which was one of the most important centers for Buddhism in ancient India. This monastic complex flourished for over a millennium, from the 1st century BCE to the 12th century CE.",
-          "It was a renowned center for advanced learning, particularly for Mahayana and Vajrayana Buddhism, attracting scholars and monks from afar. Excavations have revealed extensive monastic complexes, stupas, and sacred relic caskets believed to contain relics of the Buddha himself, cementing its place as a pivotal site in Buddhist history."
-        ],
-        keyFacts: {
-          "Period": "1st Century BCE - 12th Century CE",
-          "Location": "Lalitgiri, Ratnagiri, Udayagiri (Jajpur District)",
-          "Faith": "Mahayana & Vajrayana Buddhism",
-          "Significance": "Major center of Buddhist learning and monasticism"
-        },
-        images: [
-          "Images-Frontend/Buddhist Diamond Triangle0-hero.png",
-          "https://upload.wikimedia.org/wikipedia/commons/7/76/Udayagiri_Buddhist_Complex.jpg",
-          "https://upload.wikimedia.org/wikipedia/commons/d/d8/Lalitgiri_Archaeological_Museum_-_Main_Stupa.jpg"
-        ],
-        cardImage: "Images-frontend/Buddhist Diamond Triangle - Lalitgiri, Ratnagiri, Udayagiri (Jajpur).png",
-        cardTitle: "Buddhist Diamond Triangle",
-        cardSubtitle: "Lalitgiri, Ratnagiri, Udayagiri",
-        arPage: "Site-4.html",
-        quizId: "diamond-triangle"
+        'diamond-triangle': {
+            title: 'Buddhist Diamond Triangle',
+            aboutTitle: 'About The Diamond Triangle',
+            description: [
+              "The sites of Lalitgiri, Ratnagiri, and Udayagiri collectively form the 'Diamond Triangle,' which was one of the most important centers for Buddhism in ancient India. This monastic complex flourished for over a millennium, from the 1st century BCE to the 12th century CE.",
+              "It was a renowned center for advanced learning, particularly for Mahayana and Vajrayana Buddhism, attracting scholars and monks from afar. Excavations have revealed extensive monastic complexes, stupas, and sacred relic caskets believed to contain relics of the Buddha himself, cementing its place as a pivotal site in Buddhist history."
+            ],
+            keyFacts: {
+              "Period": "1st Century BCE - 12th Century CE",
+              "Location": "Lalitgiri, Ratnagiri, Udayagiri (Jajpur District)",
+              "Faith": "Mahayana & Vajrayana Buddhism",
+              "Significance": "Major center of Buddhist learning and monasticism"
+            },
+            images: [
+              "images/Buddhist Diamond Triangle0-hero.png", // Path updated
+            ],
+            cardImage: "images/buddhist-diamond-triangle-lalitgiri-ratnagiri-udayagiri-jajpur.png", // Path updated
+            cardTitle: "Buddhist Diamond Triangle",
+            cardSubtitle: "Lalitgiri, Ratnagiri, Udayagiri",
+            arPage: "Site-4.html",
+            quizId: "diamond-triangle"
+        }
+      };
+
+      // --- 2. GET SITE ID & DATA ---
+      const urlParams = new URLSearchParams(window.location.search);
+      const siteId = urlParams.get('site') || 'jain-sculptures';
+      const data = siteData[siteId];
+
+      if (!data) {
+        document.body.innerHTML = '<h1>Error: Site not found</h1><p><a href="index.html">Go back home</a></p>';
+        return;
       }
-    };
 
-    // --- 2. GET SITE ID & DATA ---
-    const urlParams = new URLSearchParams(window.location.search);
-    const siteId = urlParams.get('site') || 'jain-sculptures';
-    const data = siteData[siteId];
+      // --- 3. POPULATE PAGE WITH DATA ---
+      document.title = `Sanskriti Darpan - ${data.title}`;
+      document.getElementById('site-title').textContent = data.title;
+      document.getElementById('about-title').textContent = data.aboutTitle;
 
-    if (!data) {
-      document.body.innerHTML = '<h1>Error: Site not found</h1><p><a href="index.html">Go back home</a></p>';
-      return;
-    }
+      const aboutTextContainer = document.getElementById('about-text');
+      aboutTextContainer.innerHTML = '';
+      data.description.forEach(pText => {
+        const p = document.createElement('p');
+        p.textContent = pText;
+        aboutTextContainer.appendChild(p);
+      });
 
-    // --- 3. POPULATE PAGE WITH DATA ---
-    document.title = `Sanskriti Darpan - ${data.title}`;
-    document.getElementById('site-title').textContent = data.title;
-    document.getElementById('about-title').textContent = data.aboutTitle;
+      const keyFactsList = document.getElementById('key-facts-list');
+      keyFactsList.innerHTML = '';
+      for (const [key, value] of Object.entries(data.keyFacts)) {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${key}:</strong> ${value}`;
+        keyFactsList.appendChild(li);
+      }
 
-    const aboutTextContainer = document.getElementById('about-text');
-    aboutTextContainer.innerHTML = '';
-    data.description.forEach(pText => {
-      const p = document.createElement('p');
-      p.textContent = pText;
-      aboutTextContainer.appendChild(p);
-    });
+      const heroImage = document.getElementById('hero-image');
+      const thumbnailCarousel = document.getElementById('thumbnail-carousel');
+      heroImage.style.backgroundImage = `url('${data.images[0]}')`;
+      thumbnailCarousel.innerHTML = '';
+      data.images.forEach((imgUrl, index) => {
+        const img = document.createElement('img');
+        img.src = imgUrl;
+        img.alt = `${data.title} thumbnail ${index + 1}`;
+        if (index === 0) img.classList.add('active');
+        thumbnailCarousel.appendChild(img);
+      });
 
-    const keyFactsList = document.getElementById('key-facts-list');
-    keyFactsList.innerHTML = '';
-    for (const [key, value] of Object.entries(data.keyFacts)) {
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>${key}:</strong> ${value}`;
-      keyFactsList.appendChild(li);
-    }
+      // Populate Interactive Buttons
+      document.getElementById('ar-button').href = data.arPage;
+      document.getElementById('quiz-button').href = `quizzes.html?site=${data.quizId}`;
+      document.getElementById('ai-button').href = `chatMVP.html?site=${siteId}`;
 
-    const heroImage = document.getElementById('hero-image');
-    const thumbnailCarousel = document.getElementById('thumbnail-carousel');
-    heroImage.style.backgroundImage = `url('${data.images[0]}')`;
-    thumbnailCarousel.innerHTML = '';
-    data.images.forEach((imgUrl, index) => {
-      const img = document.createElement('img');
-      img.src = imgUrl;
-      img.alt = `${data.title} thumbnail ${index + 1}`;
-      if (index === 0) img.classList.add('active');
-      thumbnailCarousel.appendChild(img);
-    });
+      const exploreGrid = document.getElementById('explore-grid');
+      exploreGrid.innerHTML = '';
+      Object.keys(siteData).filter(key => key !== siteId).forEach(key => {
+        const otherSite = siteData[key];
+        const card = document.createElement('a');
+        card.href = `exhibit.html?site=${key}`;
+        card.className = 'site-card';
+        card.innerHTML = `
+          <img src="${otherSite.cardImage}" alt="${otherSite.cardTitle}">
+          <div class="card-content">
+            <h3>${otherSite.cardTitle}</h3>
+            <p>${otherSite.cardSubtitle}</p>
+          </div> 
+        `;
+        exploreGrid.appendChild(card);
+      });
 
-    // Populate Interactive Buttons
-    document.getElementById('ar-button').href = data.arPage;
-    document.getElementById('quiz-button').href = `quizzes.html?site=${data.quizId}`;
-    document.getElementById('ai-button').href = `chatMVP.html?site=${siteId}`;
-
-    const exploreGrid = document.getElementById('explore-grid');
-    exploreGrid.innerHTML = '';
-    Object.keys(siteData).filter(key => key !== siteId).forEach(key => {
-      const otherSite = siteData[key];
-      const card = document.createElement('a');
-      card.href = `exhibit.html?site=${key}`;
-      card.className = 'site-card';
-      card.innerHTML = `
-        <img src="${otherSite.cardImage}" alt="${otherSite.cardTitle}">
-        <div class="card-content">
-          <h3>${otherSite.cardTitle}</h3>
-          <p>${otherSite.cardSubtitle}</p>
-        </div> 
-      `;
-      exploreGrid.appendChild(card);
-    });
-
-    // --- 4. ADD INTERACTIVITY ---
-    const thumbnails = document.querySelectorAll('.thumbnail-carousel img');
-    thumbnails.forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        heroImage.style.backgroundImage = `url('${thumb.src}')`;
-        thumbnails.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
+      // --- 4. ADD INTERACTIVITY ---
+      const thumbnails = document.querySelectorAll('.thumbnail-carousel img');
+      thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          heroImage.style.backgroundImage = `url('${thumb.src}')`;
+          thumbnails.forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        });
       });
     });
-  });
-  </script>
+    </script>
   </body>
 </html>
