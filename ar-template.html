@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <link rel='icon' type='image/png' sizes='32x32' href='favicon-32x32.png'>
+    <link rel='icon' type='image/png' sizes='96x96' href='favicon-96x96.png'>
+    <link rel='stylesheet' href='css/common.css'>
+    <title>AR Experience</title>
+    <style>
+      .backstory-controls {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .backstory-controls p {
+        margin: 0 0 5px 0;
+        color: white;
+        font-weight: bold;
+      }
+      .lang-buttons {
+        display: flex;
+        gap: 10px;
+      }
+      .lang-button {
+        padding: 8px 16px;
+        border: 1px solid white;
+        background: transparent;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .lang-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .lang-button.playing {
+        background: #27ae60; /* vibrant-green */
+        border-color: #27ae60;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <details open>
+        <summary id="ar-title">AR Experience</summary>
+        <p>
+          This experience uses 'immersive-ar' to present a 3D model in your environment.
+          Point your camera at a flat surface to place the object.
+          <a class="back" href="exhibit.html">Back to Exhibit</a>
+        </p>
+      </details>
+    </header>
+
+    <div id="backstory-controls" class="backstory-controls" style="display: none;">
+      <p>Play Backstory</p>
+      <div class="lang-buttons">
+        <button id="play-english" class="lang-button">English</button>
+        <button id="play-hindi" class="lang-button">हिन्दी (Hindi)</button>
+      </div>
+    </div>
+
+    <script type="module">
+      import {WebXRButton} from './js/util/webxr-button.js';
+      import {Scene} from './js/render/scenes/scene.js';
+      import {Renderer, createWebGLContext} from './js/render/core/renderer.js';
+      import {SkyboxNode} from './js/render/nodes/skybox.js';
+      import {InlineViewerHelper} from './js/util/inline-viewer-helper.js';
+      import {Gltf2Node} from './js/render/nodes/gltf2.js';
+      import {QueryArgs} from './js/util/query-args.js';
+      import WebXRPolyfill from './js/third-party/webxr-polyfill/build/webxr-polyfill.module.js';
+
+      // --- 1. Site Configuration ---
+      const siteConfigs = {
+        'jain-sculptures': { title: 'Ancient Jain Sculptures', model: 'media/site--1/site1.gltf', audio_en: 'media/audio/script1_english.mp3', audio_hi: 'media/audio/script1_hindi.mp3' },
+        'buddhist-relics': { title: 'Buddhist Relics', model: 'media/Site-2/site2.gltf', audio_en: 'media/audio/script2_english.mp3', audio_hi: 'media/audio/script2_hindi.mp3' },
+        'keonjhar-relics': { title: 'Keonjhar Relics', model: 'media/site-3/Untitled.gltf', audio_en: 'media/audio/script3_english.mp3', audio_hi: 'media/audio/script3_hindi.mp3' },
+        'diamond-triangle': { title: 'Buddhist Diamond Triangle', model: 'media/site-4/Untitled.gltf', audio_en: 'media/audio/script4_english.mp3', audio_hi: 'media/audio/script4_hindi.mp3' }
+      };
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const siteId = urlParams.get('site') || 'jain-sculptures';
+      const config = siteConfigs[siteId];
+
+      if (!config) {
+        document.body.innerHTML = '<h1>Error: Site configuration not found.</h1><a href="exhibit.html">Go Back</a>';
+        throw new Error("Site config not found");
+      }
+
+      document.title = config.title;
+      document.getElementById('ar-title').textContent = config.title;
+
+      if (QueryArgs.getBool('usePolyfill', true)) {
+        new WebXRPolyfill();
+      }
+
+      // --- 2. XR and Scene Setup ---
+      let xrButton = null;
+      let xrImmersiveRefSpace = null;
+      let inlineViewerHelper = null;
+      let gl = null;
+      let renderer = null;
+      let scene = new Scene();
+      
+      let modelNode = new Gltf2Node({url: config.model});
+      modelNode.scale = [0.5, 0.5, 0.5];
+      scene.addNode(modelNode);
+
+      let skybox = new SkyboxNode({url: 'media/textures/eilenriede-park-2k.png'});
+      scene.addNode(skybox);
+
+      // --- 3. Audio Setup ---
+      let audioPlayer = new Audio();
+      const btnEnglish = document.getElementById('play-english');
+      const btnHindi = document.getElementById('play-hindi');
+
+      function playAudio(lang) {
+        const wasPlayingThis = !audioPlayer.paused && audioPlayer.src.includes(lang === 'en' ? config.audio_en : config.audio_hi);
+        
+        audioPlayer.pause();
+        btnEnglish.classList.remove('playing');
+        btnHindi.classList.remove('playing');
+
+        if (wasPlayingThis) return;
+
+        const btn = lang === 'en' ? btnEnglish : btnHindi;
+        audioPlayer.src = btn.dataset.src;
+        audioPlayer.play();
+        btn.classList.add('playing');
+      }
+
+      btnEnglish.dataset.src = config.audio_en;
+      btnHindi.dataset.src = config.audio_hi;
+      btnEnglish.addEventListener('click', () => playAudio('en'));
+      btnHindi.addEventListener('click', () => playAudio('hi'));
+      audioPlayer.onended = () => {
+        btnEnglish.classList.remove('playing');
+        btnHindi.classList.remove('playing');
+      };
+
+      // --- 4. WebXR Logic (Adapted from original files) ---
+      function initXR() {
+        xrButton = new WebXRButton({
+          onRequestSession: onRequestSession,
+          onEndSession: onEndSession,
+          textEnterXRTitle: "START AR",
+          textXRNotFoundTitle: "AR NOT FOUND",
+          textExitXRTitle: "EXIT AR",
+        });
+        document.querySelector('header').appendChild(xrButton.domElement);
+
+        if (navigator.xr) {
+          navigator.xr.isSessionSupported('immersive-ar').then((supported) => { xrButton.enabled = supported; });
+          navigator.xr.requestSession('inline').then(onSessionStarted);
+        }
+      }
+
+      function onRequestSession() {
+        return navigator.xr.requestSession('immersive-ar').then((session) => {
+          xrButton.setSession(session);
+          session.isImmersive = true;
+          onSessionStarted(session);
+        });
+      }
+
+      function initGL() {
+        if (gl) return;
+        gl = createWebGLContext({ xrCompatible: true });
+        document.body.appendChild(gl.canvas);
+        function onResize() {
+          gl.canvas.width = gl.canvas.clientWidth * window.devicePixelRatio;
+          gl.canvas.height = gl.canvas.clientHeight * window.devicePixelRatio;
+        }
+        window.addEventListener('resize', onResize);
+        onResize();
+        renderer = new Renderer(gl);
+        scene.setRenderer(renderer);
+      }
+
+      function onSessionStarted(session) {
+        session.addEventListener('end', onSessionEnded);
+        initGL();
+        session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl) });
+        let refSpaceType = session.isImmersive ? 'local' : 'viewer';
+        session.requestReferenceSpace(refSpaceType).then((refSpace) => {
+          if (session.isImmersive) {
+            xrImmersiveRefSpace = refSpace;
+            document.getElementById('backstory-controls').style.display = 'flex';
+            skybox.visible = false;
+          } else {
+            inlineViewerHelper = new InlineViewerHelper(gl.canvas, refSpace);
+          }
+          session.requestAnimationFrame(onXRFrame);
+        });
+      }
+
+      function onEndSession(session) {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        session.end();
+      }
+
+      function onSessionEnded(event) {
+        if (event.session.isImmersive) {
+          xrButton.setSession(null);
+          skybox.visible = true;
+          document.getElementById('backstory-controls').style.display = 'none';
+          btnEnglish.classList.remove('playing');
+          btnHindi.classList.remove('playing');
+        }
+      }
+
+      function onXRFrame(t, frame) {
+        let session = frame.session;
+        let refSpace = session.isImmersive ? xrImmersiveRefSpace : inlineViewerHelper.referenceSpace;
+        let pose = frame.getViewerPose(refSpace);
+        scene.startFrame();
+        session.requestAnimationFrame(onXRFrame);
+        scene.drawXRFrame(frame, pose);
+        scene.endFrame();
+      }
+
+      initXR();
+    </script>
+  </body>
+</html>
