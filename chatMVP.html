@@ -209,12 +209,20 @@
 
     <script>
         // --- 1. SETUP ---
-        // ⚠️ IMPORTANT: Replace with your actual API key.
-        const API_KEY = "AIzaSyAbefwXJH3EP8Xxvpt014xM2kuCHgdP2pM"; // Replace with your actual API key
-        const MODEL_NAME = "gemini-1.5-flash"; // A fast and capable model
+        // ⚠️ IMPORTANT: The old API key was exposed and is likely invalid.
+        // 1. Go to Google AI Studio: https://aistudio.google.com/app/apikey
+        // 2. Create a new API key.
+        // 3. (Recommended) Add restrictions to your key. For local development, you can add
+        //    "HTTP referrers" like `localhost:*` or the specific IP and port you use.
+        // 4. Paste your new, valid API key here.
+        // 5. IMPORTANT: Do NOT commit this key to a public repository. Use a .env file or
+        //    other secret management for a real application.
+        const API_KEY = "AIzaSyAbefwXJH3EP8Xxvpt014xM2kuCHgdP2pM"; // <-- PASTE YOUR NEW KEY HERE
+
+        const MODEL_NAME = "gemini-2.5-flash"; // A fast and capable model
 
         // The context data containing information about the heritage sites.
-        const CONTEXT_DATA = `
+        const CONTEXT_DATA = `1. Site: Ancient Jain Sculptures – Nandapur Region, Koraput
         1. Site: Ancient Jain Sculptures – Nandapur Region, Koraput
             - Represents the rich Jain heritage of the historic Nandapur Kingdom.
             - Was a significant Jain center, particularly for gemstone traders, as early as the 4th century.
@@ -239,14 +247,12 @@
             - The region is also rich in later Jaina antiquities from the medieval period.
             - Crucial for understanding the long-term cultural and historical evolution of this part of Odisha.
 
-
         5. Buddhist Sites - Lalitgiri, Ratnagiri, Udayagiri (Jajpur)
             - Collectively known as the "Diamond Triangle," a major center for Buddhism in ancient India.
             - Flourished for over a millennium, from the 1st century BCE to the 12th century CE.
             - Was an important center for advanced learning, particularly for Mahayana and Vajrayana Buddhism.
             - Excavations revealed extensive monastic complexes, stupas, and sacred relic caskets believed to contain relics of the Buddha.
-
-        `;
+`;
 
         // --- 2. GET ELEMENTS ---
         const askButton = document.getElementById('askButton');
@@ -258,6 +264,12 @@
             // Disable button and show loading state
             askButton.disabled = true;
             responseEl.textContent = 'Thinking...';
+
+            if (API_KEY === "YOUR_NEW_GOOGLE_AI_API_KEY") {
+                responseEl.textContent = "Error: Please replace 'YOUR_NEW_GOOGLE_AI_API_KEY' with a valid API key in the chatMVP.html file.";
+                askButton.disabled = false;
+                return;
+            }
 
             const question = questionInput.value;
 
@@ -286,12 +298,20 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`API call failed with status: ${response.status}`);
+                    // Try to parse the error response from the API
+                    const errorData = await response.json().catch(() => null);
+                    const errorMessage = errorData?.error?.message || `The API call failed with status: ${response.status}. Check the browser console for more details. This could be due to an invalid API key or network issue.`;
+                    throw new Error(errorMessage);
                 }
 
                 const data = await response.json();
+                
+                if (!data.candidates || data.candidates.length === 0) {
+                    throw new Error("The API returned a valid response, but it contained no answer. The model may have refused to answer based on safety settings.");
+                }
+
                 const aiText = data.candidates[0].content.parts[0].text;
-                responseEl.textContent = aiText.trim();
+                responseEl.textContent = aiText.trim() || "The AI returned an empty response.";
 
             } catch (error) {
                 responseEl.textContent = `Error: ${error.message}`;
