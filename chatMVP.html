@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Historian - Sanskriti Darpan</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -219,7 +221,7 @@
         //    other secret management for a real application.
         const API_KEY = "AIzaSyAbefwXJH3EP8Xxvpt014xM2kuCHgdP2pM"; // <-- PASTE YOUR NEW KEY HERE
 
-        const MODEL_NAME = "gemini-2.5-flash"; // A fast and capable model
+        const MODEL_NAME = "gemini-1.5-flash"; // A fast and capable model
 
         // The context data containing information about the heritage sites.
         const CONTEXT_DATA = `1. Site: Ancient Jain Sculptures – Nandapur Region, Koraput
@@ -286,14 +288,18 @@
             QUESTION: ${question}
             `;
 
-            const api_url = `https://generativeai.googleapis.com/v1beta/models/${MODEL_NAME}:generateText?key=${API_KEY}`;
+            const api_url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
             try {
                 const response = await fetch(api_url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        prompt: prompt
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
                     })
                 });
 
@@ -310,7 +316,7 @@
                     throw new Error("The API returned a valid response, but it contained no answer. The model may have refused to answer based on safety settings.");
                 }
 
-                const aiText = data.candidates?.[0]?.content?.[0]?.text || data.output?.[0]?.content?.[0]?.text || "No response received.";
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response received.";
                 responseEl.textContent = aiText.trim() || "The AI returned an empty response.";
 
             } catch (error) {
