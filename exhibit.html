@@ -297,7 +297,7 @@
               <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 16V8C21 6.89543 20.1046 6 19 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18H19C20.1046 18 21 17.1046 21 16Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 12L10 9L13 12L17 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span>Experience the AR Vision</span>
             </a>
-            <a href="#" class="interactive-btn btn-quiz" id="quiz-button">
+             <a href="#" class="interactive-btn btn-quiz" id="quiz-button">
               <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12V12.01" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <span>Take the Quiz</span>
             </a>
@@ -356,7 +356,8 @@
             cardTitle: "Ancient Jain Sculptures",
             cardSubtitle: "Nandapur Region, Koraput",
             arModel: "media/site-1/site1.gltf",
-            arPage: "ar-template.html?site=jain-sculptures"
+            arPage: "ar-template.html?site=jain-sculptures",
+            quizId: "nandapur-jain-sculptures"
           },
           'buddhist-relics': {
             title: 'Buddhist Relics, Bhandaripokhari',
@@ -379,7 +380,8 @@
             cardTitle: "Buddhist Relics",
             cardSubtitle: "Bhandaripokhari, Bhadrak",
             arModel: "media/Site-2/site2.gltf",
-            arPage: "ar-template.html?site=buddhist-relics"
+            arPage: "ar-template.html?site=buddhist-relics",
+            quizId: "bhandaripokhari-relics"
           },
           'keonjhar-relics': {
             title: 'Keonjhar Archaeological Relics',
@@ -402,7 +404,8 @@
             cardTitle: "Keonjhar Archaeological Relics",
             cardSubtitle: "Keonjhar",
             arModel: "media/site-3/Untitled.gltf",
-            arPage: "ar-template.html?site=keonjhar-relics"
+            arPage: "ar-template.html?site=keonjhar-relics",
+            quizId: "keonjhar-relics",
           },
           'diamond-triangle': {
             title: 'Buddhist Diamond Triangle',
@@ -424,7 +427,8 @@
             cardTitle: "Buddhist Diamond Triangle",
             cardSubtitle: "Lalitgiri, Ratnagiri, Udayagiri",
             arModel: "media/site-4/Untitled.gltf",
-            arPage: "ar-template.html?site=diamond-triangle"
+            arPage: "ar-template.html?site=diamond-triangle",
+            quizId: "diamond-triangle"
           }
         };
 
@@ -476,7 +480,7 @@
 
         // Populate Interactive Buttons
         document.getElementById('ar-button').href = data.arPage;
-        // document.getElementById('quiz-button').href = `quiz.html?site=${siteId}`; // Example for future
+        document.getElementById('quiz-button').href = `Quizzes.html?site=${data.quizId || siteId}`;
         document.getElementById('ai-button').href = `chatMVP.html?site=${siteId}`;
 
         // Populate "Explore More" section
