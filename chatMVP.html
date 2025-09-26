@@ -274,14 +274,14 @@
             QUESTION: ${question}
             `;
 
-            const api_url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+            const api_url = `https://generativeai.googleapis.com/v1beta/models/${MODEL_NAME}:generateText?key=${API_KEY}`;
 
             try {
                 const response = await fetch(api_url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
+                        prompt: prompt
                     })
                 });
 
@@ -290,7 +290,7 @@
                 }
 
                 const data = await response.json();
-                const aiText = data.candidates[0].content.parts[0].text;
+                const aiText = data.candidates?.[0]?.content?.[0]?.text || data.output?.[0]?.content?.[0]?.text || "No response received.";
                 responseEl.textContent = aiText.trim();
 
             } catch (error) {
